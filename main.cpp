@@ -24,6 +24,9 @@ int main()
                {'2', 'P', 'P', 'P', 'P', 'P', 'P', 'P', 'P'},
                {'1', 'R', 'N', 'B', 'Q', 'K', 'B', 'N', 'R'},
                {' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}};
+
+    cout << "White plays firts" << endl;
+
     Chessplace(pole);
 
     return 0;
