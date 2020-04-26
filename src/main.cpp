@@ -1,6 +1,6 @@
 #include "headerFile.h"
-#include <iostream>
 #include <cstring>
+#include <iostream>
 
 using namespace std;
 
@@ -19,8 +19,7 @@ int main()
                         {' ', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'}};
     BoardDraw(board);
 
-    while (1)
-    {
+    while (1) {
         move(playerMove, board);
         BoardDraw(board);
     }
