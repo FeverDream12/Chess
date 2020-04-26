@@ -8,14 +8,36 @@ using namespace std;
 int Y_from = 0, Y_to = 0;
 int X_from = 0, X_to = 0;
 
-bool CorrectInput(char turn[], char pole[][9])
+void move(char playerMove[], char board[][9])
+{
+  if(CorrectInput(playerMove, board))
+  {
+    PawnMove(board);
+  }
+}
+
+void PawnMove(char board[][9])
+{
+  if (board[Y_from - 1][X_from] == 'p')
+  {
+      board[Y_from - 1][X_from] = ' ';
+      board[Y_to - 1][X_to] = 'p';
+  }
+  else if (board[Y_from - 1][X_from] == 'P')
+  {
+      board[Y_from - 1][X_from] = ' ';
+      board[Y_to - 1][X_to] = 'P';
+  }
+}
+
+bool CorrectInput(char playerMove[], char board[][9])
 {
   string input = " ";
   cout << "Make a move :" << endl;
   cin >> playerMove;
   cout << endl;
 
-  switch (playerMove[0]) 
+  switch (playerMove[0])
   {
   case 'a':
       X_from = 1;
@@ -76,28 +98,6 @@ bool CorrectInput(char turn[], char pole[][9])
 
   input[0] = playerMove[4];
   Y_to = atoi(input.c_str());
-
-  void move(char playerMove[], char board[][9])
-  {
-    if(CorrectInput(playerMove, board))
-    {
-      PawnMove(board);
-    }
-  }
-
-  void PawnMove(char pole[][9])
-  {
-    if (pole[Y_from - 1][X_from] == 'p')
-    {
-        board[Y_from - 1][X_from] = ' ';
-        board[Y_to - 1][X_to] = 'p';
-    }
-    else if (pole[move1 - 1][h] == 'P')
-    {
-        board[move1 - 1][h] = ' ';
-        board[move2 - 1][k1] = 'P';
-    }
-  }
 
   if((Y_from <= 0 || Y_from >= 9) || (X_from <= 0 || X_from >= 9) || (Y_to <= 0 || Y_to >= 9) || (X_to <= 0 || X_to >= 9))
   {
