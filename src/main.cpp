@@ -20,6 +20,9 @@ int main()
     BoardDraw(board);
 
     while (1) {
+        cout << "Make a move :" << endl;
+        cin >> playerMove;
+        cout << endl;
         move(playerMove, board);
         BoardDraw(board);
     }
