@@ -7,11 +7,21 @@ using namespace std;
 
 int Y_from = 0, Y_to = 0;
 int X_from = 0, X_to = 0;
+int BorderMin = 0, BorderMax = 9;
+int Qualifier;
 
 void move(char playerMove[], char board[][9])
 {
-    if (CorrectInput(playerMove, board)) {
-        PawnMove(board);
+    if (strlen(playerMove) == 5) {
+        Qualifier = 0;
+        if (CorrectInput(playerMove, board, Qualifier)) {
+            PawnMove(board);
+        }
+    } else {
+        Qualifier = 1;
+        if (CorrectInput(playerMove, board, Qualifier)) {
+            moveFigure(playerMove, board);
+        }
     }
 }
 
@@ -23,14 +33,25 @@ void PawnMove(char board[][9])
     } else if (board[Y_from - 1][X_from] == 'P') {
         board[Y_from - 1][X_from] = ' ';
         board[Y_to - 1][X_to] = 'P';
+    } else {
+        cout << "Error, this figure is not a pawn. Make a correct move" << endl
+             << endl;
     }
 }
 
-bool CorrectInput(char playerMove[], char board[][9])
+void moveFigure(char playerMove[], char board[][9])
+{
+    if (board[Y_from - 1][X_from] == playerMove[0]) {
+        board[Y_from - 1][X_from] = ' ';
+        board[Y_to - 1][X_to] = playerMove[0];
+    }
+}
+
+bool CorrectInput(char playerMove[], char board[][9], int Qualifier)
 {
     string input = " ";
 
-    switch (playerMove[0]) {
+    switch (playerMove[0 + Qualifier]) {
     case 'a':
         X_from = 1;
         break;
@@ -57,7 +78,7 @@ bool CorrectInput(char playerMove[], char board[][9])
         break;
     }
 
-    switch (playerMove[3]) {
+    switch (playerMove[3 + Qualifier]) {
     case 'a':
         X_to = 1;
         break;
@@ -84,10 +105,10 @@ bool CorrectInput(char playerMove[], char board[][9])
         break;
     }
 
-    input[0] = playerMove[1];
+    input[0] = playerMove[1 + Qualifier];
     Y_from = atoi(input.c_str());
 
-    input[0] = playerMove[4];
+    input[0] = playerMove[4 + Qualifier];
     Y_to = atoi(input.c_str());
 
     if ((Y_from <= 0 || Y_from >= 9) || (X_from <= 0 || X_from >= 9)
