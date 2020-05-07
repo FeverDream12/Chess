@@ -1,5 +1,5 @@
 g = g++
-CFLAGS = -Wall -Werror -MP -MMD
+CFLAGS = -Wall -Werror -MP -MMD -std=c++14
 
 .PHONY: clean run all
 
@@ -19,7 +19,7 @@ all: ./bin/chess.exe
 ./build/move.o: ./src/move.cpp ./src/headerFile.h
 	$(g) $(CFLAGS) -o ./build/move.o -c ./src/move.cpp -lm
 
-test: create bin/chess-test
+test: bin/chess-test
 
 bin/chess-test: build/test/main.o build/test/move.o
 		$(g) -o bin/chess-test build/test/main.o build/test/move.o
@@ -30,9 +30,6 @@ build/test/main.o: test/main.cpp
 
 build/test/move.o: src/move.cpp
 		$(g) $(CFLAGS) -o build/test/move.o -c src/move.cpp
-
-create:
-		mkdir -p bin/temp build/src build/test
 
 clean:
 	rm -rf build/*.o build/*.d
