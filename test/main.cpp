@@ -27,3 +27,17 @@ TEST_CASE("IncorrectPawnMove", "Incorrect")
     char playerMove[6] = "c8-c9";
     REQUIRE(CorrectInput(playerMove, board, Qualifier) == false);
 }
+
+TEST_CASE("CorrectFigureMove", "Correct")
+{
+    int Qualifier = 1;
+    char playerMove[7] = "Bc8-c6";
+    REQUIRE(CorrectInput(playerMove, board, Qualifier) == true);
+}
+
+TEST_CASE("IncorrectFigureMove", "Incorrect")
+{
+    int Qualifier = 1;
+    char playerMove[7] = "Qc8-c9";
+    REQUIRE(CorrectInput(playerMove, board, Qualifier) == false);
+}
