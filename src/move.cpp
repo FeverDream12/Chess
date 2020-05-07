@@ -29,9 +29,6 @@ void PawnMove(char board[][9])
 bool CorrectInput(char playerMove[], char board[][9])
 {
     string input = " ";
-    cout << "Make a move :" << endl;
-    cin >> playerMove;
-    cout << endl;
 
     switch (playerMove[0]) {
     case 'a':
