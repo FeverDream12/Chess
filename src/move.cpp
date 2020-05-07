@@ -7,7 +7,6 @@ using namespace std;
 
 int Y_from = 0, Y_to = 0;
 int X_from = 0, X_to = 0;
-int BorderMin = 0, BorderMax = 9;
 int Qualifier;
 
 void move(char playerMove[], char board[][9])
