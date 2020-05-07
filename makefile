@@ -19,8 +19,26 @@ all: ./bin/chess.exe
 ./build/move.o: ./src/move.cpp ./src/headerFile.h
 	$(g) $(CFLAGS) -o ./build/move.o -c ./src/move.cpp -lm
 
+test: create bin/chess-test
+
+bin/chess-test: build/test/main.o build/test/move.o
+		$(g) -o bin/chess-test build/test/main.o build/test/move.o
+
+build/test/main.o: test/main.cpp
+		$(g) $(CFLAGS) -o build/test/main.o -c test/main.cpp
+
+
+build/test/move.o: src/move.cpp
+		$(g) $(CFLAGS) -o build/test/move.o -c src/move.cpp
+
+create:
+		mkdir -p bin/temp build/src build/test
+
 clean:
 	rm -rf build/*.o build/*.d
+
+testRun:
+	./bin/chess-test
 
 run:
 	./bin/chess.exe
