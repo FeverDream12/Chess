@@ -21,18 +21,14 @@ all: ./bin/chess.exe
 
 test: bin/chess-test
 
-bin/chess-test: build/test/main.o build/test/move.o
-		$(g) -o bin/chess-test build/test/main.o build/test/move.o
+bin/chess-test: build/test/main.o build/move.o
+	$(g) -o bin/chess-test build/test/main.o build/move.o
 
 build/test/main.o: test/main.cpp
-		$(g) $(CFLAGS) -o build/test/main.o -c test/main.cpp
-
-
-build/test/move.o: src/move.cpp
-		$(g) $(CFLAGS) -o build/test/move.o -c src/move.cpp
+	$(g) $(CFLAGS) -o build/test/main.o -c test/main.cpp
 
 clean:
-	rm -rf build/*.o build/*.d
+	rm -rf build/*.o build/*.d build/test/*.o build/test/*.d
 
 testRun:
 	./bin/chess-test

@@ -75,6 +75,10 @@ bool CorrectInput(char playerMove[], char board[][9], int Qualifier)
     case 'h':
         X_from = 8;
         break;
+    default: {
+        cout << "Incorrect input" << endl << endl;
+        return false;
+    }; break;
     }
 
     switch (playerMove[3 + Qualifier]) {
@@ -102,6 +106,10 @@ bool CorrectInput(char playerMove[], char board[][9], int Qualifier)
     case 'h':
         X_to = 8;
         break;
+    default: {
+        cout << "Incorrect input" << endl << endl;
+        return false;
+    }; break;
     }
 
     input[0] = playerMove[1 + Qualifier];
@@ -111,8 +119,10 @@ bool CorrectInput(char playerMove[], char board[][9], int Qualifier)
     Y_to = atoi(input.c_str());
 
     if ((Y_from <= 0 || Y_from >= 9) || (X_from <= 0 || X_from >= 9)
-        || (Y_to <= 0 || Y_to >= 9) || (X_to <= 0 || X_to >= 9)) {
-        cout << "Error. Incorrect input. Out of the board." << endl;
+        || (Y_to <= 0 || Y_to >= 9) || (X_to <= 0 || X_to >= 9)
+        || (board[Y_from - 1][X_from] == ' ')) {
+        cout << "Error. Incorrect input. Out of the board or empty cage."
+             << endl;
         return false;
     }
     return true;
